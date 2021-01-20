@@ -32,9 +32,9 @@ app.use('/books', bookRouter);
 
 /////MongoDB
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true});
-const db = mongoose.connection
-db.on('error', error => console.log(error));
-db.once('open', () => console.log('Connected to Mongoose'));
+const db1 = mongoose.connection
+db1.on('error', error => console.log(error));
+db1.once('open', () => console.log('Connected to Mongoose'));
 
 //routes
 
