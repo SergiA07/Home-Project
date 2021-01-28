@@ -1,0 +1,6 @@
+<h2>Edit Dish</h2>
+<form action="/dishes/<%= dish.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <a href="/dishes">Cancel</a>
+  <button type="submit" name="updateButton">Update</button>
+</form>

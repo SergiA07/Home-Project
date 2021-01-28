@@ -9,12 +9,8 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index');
-const authorRouter = require('./routes/authors');
-const bookRouter = require('./routes/books');
-
-
-
-
+const foodRouter = require('./routes/foods');
+const dishRouter = require('./routes/dishes');
 
 //motor de plantilla
 app.set('view engine', 'ejs');
@@ -26,25 +22,16 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded( {limit: '10mb', extended: false}));
 app.use(methodOverride('_method'))
 
+//Middlewares
 app.use('/', indexRouter);
-app.use('/authors', authorRouter);
-app.use('/books', bookRouter);
+app.use('/foods', foodRouter);
+app.use('/dishes', dishRouter);
 
 /////MongoDB
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
 const db1 = mongoose.connection
 db1.on('error', error => console.log(error));
 db1.once('open', () => console.log('Connected to Mongoose'));
 
-//routes
-
-/* app.use((req, res, next) => {
-    res.status(404).render('404', {
-        titulo: '404',
-        descripcion: 'Titulo del sitio'
-    })
-}); */
-////////
-
-
+////
 app.listen(process.env.PORT || 4000);

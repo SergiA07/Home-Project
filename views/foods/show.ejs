@@ -1,0 +1,26 @@
+<div>
+    <a href="/foods/new">New Food</a>
+</div>
+<h2>Nom: <%= food.name %> </h2>
+<h2>Fats: <%= food.fats %> </h2>
+<h2>Carbs: <%= food.carbs %> </h2>
+<h2>Protein: <%= food.protein %> </h2>
+<h2>Fiber: <%= food.fiber %> </h2>
+<a href="/foods/<%= food.slug %>/edit">Edit</a>
+<%- include('../templates/deleteForm',
+    {url: `/foods/${food.id}`}
+    )
+%>
+<form action="/foods/search" method="GET">
+    <label for="id">Name</label>
+    <select name="id" onchange="this.form.submit()">
+        <option disabled selected>-- Tria --</option>
+        <% foods.forEach((food,index) => { %>
+            <option label="<%= food.name %>" value="<%= food.id %>"></option> 
+        <% }) %>  
+    </select>
+</form>
+ 
+
+
+

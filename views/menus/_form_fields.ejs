@@ -1,0 +1,47 @@
+<div>
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<%= plat.name %>" />
+</div>
+
+<div>
+    <label for="updateDate">Last Update Date</label>
+    <input type="date" name="updateDate"
+        value="<%= plat.updateDate == null ? '' : plat.updateDate.toISOString().split('T')[0] %>" /> 
+</div>
+
+
+<div>
+    <% plat.ingredients.forEach((ingredient,index) => { %>
+        <div>
+            <label for="id<%=index%>">Ingredient <%=index + 1%>:</label>
+            <select name="ingredientText<%=index%>">
+                <option disabled selected>-- Tria --</option>
+                <% aliments.forEach(aliment => { %>
+                    <% if (aliment.id == ingredient.aliment) { %>
+                        <option selected label="<%= aliment.name %>" value="<%= aliment.id %>"></option> 
+                    <% } else { %>
+                        <option label="<%= aliment.name %>" value="<%= aliment.id %>"></option>
+                    <% } %>    
+                <% }) %>  
+            </select>
+            <input type="number" name="ingredientNumber<%=index%>" value="<%= ingredient.quantity %>"  />
+            <% if (plat.ingredients.length > 1) { %>
+                <button type="submit" name="eraseButton<%=index%>">X</button>
+            <% } %>
+        </div>
+    <% }) %>
+</div>
+<button type="submit" name="plusButton">+</button>
+
+
+<div>
+    <label for="description">Description</label>
+    <textarea name="description"><%= plat.description %> </textarea> 
+</div>
+
+
+
+
+
+
+

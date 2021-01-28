@@ -1,0 +1,6 @@
+<h2>Edit Plat</h2>
+<form action="/plats/<%= plat.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <a href="/plats">Cancel</a>
+  <button type="submit" name="updateButton">Update</button>
+</form>
