@@ -1,0 +1,10 @@
+$backgroundColor1: hsl(180, 6%, 47%);
+$backgroundColor2: rgb(255,255,240);
+$backgroundColorGradient: radial-gradient($backgroundColor2,$backgroundColor1);
+$backgroundColorGradient2: radial-gradient($backgroundColor1,$backgroundColor2);
+
+$primaryBtnColor: rgb(116, 113, 113);
+$secundaryBtnColor: rgb(65, 76, 128);
+
+$primaryTextColor: rgb(6, 26, 4);
+$secundaryTextColor: rgb(63, 11, 22);

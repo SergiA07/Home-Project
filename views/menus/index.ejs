@@ -1,13 +1,31 @@
-<h2>Search Plats</h2>
-<form action="plats/search/" method="GET">
-    <label for="id">Name</label>
-    <select name="id" onchange="this.form.submit()">
-        <option disabled selected>-- Tria --</option>
-        <% plats.forEach(plat => { %>
-            <option label="<%= plat.name %>" value="<%= plat.id %>"></option> 
+<div class="menus-index-container">
+    <h1 id="menus-index-title">Menus</h1>
+    <div id="menus-index-info">
+        <% menus.forEach(menu => { %>
+            <div id="menus-index-info-item">
+                <div id="menus-index-info-item-day">
+                <a href="/menus/<%= menu.slug %>/"><h3><%= menu.date.dayOfWeek %></h3></a>
+                </div>
+                <% menu.meals.forEach((meal,index) => { %>
+                    <% if (meal.onModel === 'Dish') { %>
+                        <div>
+                            <p id="menus-index-info-item-dish"><%= meal.meal.name %></p> 
+                        </div>
+                    <% } else if (meal.onModel === 'Food') { %>
+                        <div>
+                            <p id="menus-index-info-item-food"><%= meal.meal.name %>: <%= meal.quantity %> gr</p>
+                        </div>
+                    <% } %>
+                <% }) %> 
+                <p id="menus-index-info-item-date"><%= menu.date.longDate.toDateString() %></p>  
+            </div>  
         <% }) %>  
-    </select>
-</form>
-<a href="/plats/new">New Plat</a>
-<a href="/plats/advancedSearch">Advanced Search</a>
-
+    </div>
+    
+</div>
+<div class="menus-index-links">
+    <a href="/menus/new">New Menu</a>
+    <a href="/menus/advancedSearch">Advanced Search</a>
+    <a href="/menus/new">New Menu</a>
+    <a href="/menus/advancedSearch">Advanced Search</a>
+</div>

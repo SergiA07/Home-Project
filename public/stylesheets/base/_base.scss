@@ -1,0 +1,76 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $poppins, $sans-serif;
+}
+
+main {
+    background: $backgroundColorGradient;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.main-container{
+    flex: 1 0 auto;
+    max-width: 80%;
+    margin: auto;
+    padding: 2rem 0rem;
+    
+}
+
+h1 {
+    color: rgba(205, 235, 247,1);
+    font-size: 6rem;
+}
+h2 {
+    color: $primaryTextColor;
+    font-size: 4rem;
+}
+h3 {
+    color: $primaryTextColor;
+    font-size: 3rem;
+}
+h4 {
+    color: $primaryTextColor;
+    font-size: 2.5rem;
+}
+p, li, a, button {
+    color: $primaryTextColor;
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+select {
+    color: $primaryTextColor;
+    font-size: 1.5rem;
+    height: 2.5rem;
+    width: 12rem;
+    max-width: 100%; 
+    line-height: 1.3;
+    text-align-last:center;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+    border-radius: .3em;
+    background-color: rgb(245, 241, 241);
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        background-color: rgb(240, 235, 235);
+        border: 0.15rem solid rgb(80, 78, 78);
+        box-shadow: 0 2px 0 2px rgba(0,0,0,.06);
+    }
+}
+ 

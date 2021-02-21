@@ -1,43 +1,52 @@
 <div>
-    <label for="name">Name</label>
-    <input type="text" name="name" value="<%= plat.name %>" />
+    <label for="scheduledDate">Date</label>
+    <input type="date" name="scheduledDate"
+        value="<%= menu.date.longDate == null ? '' : menu.date.longDate.toISOString().split('T')[0] %>" /> 
 </div>
-
 <div>
-    <label for="updateDate">Last Update Date</label>
-    <input type="date" name="updateDate"
-        value="<%= plat.updateDate == null ? '' : plat.updateDate.toISOString().split('T')[0] %>" /> 
-</div>
-
-
-<div>
-    <% plat.ingredients.forEach((ingredient,index) => { %>
+    <% menu.meals.forEach((meal,index) => { %>
         <div>
-            <label for="id<%=index%>">Ingredient <%=index + 1%>:</label>
-            <select name="ingredientText<%=index%>">
-                <option disabled selected>-- Tria --</option>
-                <% aliments.forEach(aliment => { %>
-                    <% if (aliment.id == ingredient.aliment) { %>
-                        <option selected label="<%= aliment.name %>" value="<%= aliment.id %>"></option> 
-                    <% } else { %>
-                        <option label="<%= aliment.name %>" value="<%= aliment.id %>"></option>
-                    <% } %>    
-                <% }) %>  
-            </select>
-            <input type="number" name="ingredientNumber<%=index%>" value="<%= ingredient.quantity %>"  />
-            <% if (plat.ingredients.length > 1) { %>
+            <% if (meal.onModel === 'Dish') { %>
+                <div><label>Dishes</label></div>
+                <label for="id<%=index%>">Dish <%=index + 1%>:</label>
+                <select name="dish<%=index%>">
+                    <option disabled selected>-- Tria --</option>
+                    <% dishes.forEach(dish => { %>
+                        <% if (dish.id == meal.meal) { %>
+                            <option selected label="<%= dish.name %>" value="<%= dish.id %>"></option> 
+                        <% } else { %>
+                            <option label="<%= dish.name %>" value="<%= dish.id %>"></option>
+                        <% } %>    
+                    <% }) %>
+                </select>
+                <button type="submit" name="eraseButton<%=index%>">X</button>
+            <% } %>
+            <% if (meal.onModel === 'Food') { %>
+                <div><label>Foods</label></div>
+                <label for="id<%=index%>">Food <%=index + 1%>:</label>
+                <select name="food<%=index%>">
+                    <option disabled selected>-- Tria --</option>
+                    <% foods.forEach(food => { %>
+                        <% if (food.id == meal.meal) { %>
+                            <option selected label="<%= food.name %>" value="<%= food.id %>"></option> 
+                        <% } else { %>
+                        <option label="<%= food.name %>" value="<%= food.id %>"></option>
+                        <% } %>
+                    <% }) %>
+                </select>
+                <input type="number" name="foodQuantity<%=index%>" value="<%= meal.quantity %>"  />
                 <button type="submit" name="eraseButton<%=index%>">X</button>
             <% } %>
         </div>
     <% }) %>
+    <div>
+        <button type="submit" name="plusDishButton">+ Dish</button>
+        <button type="submit" name="plusFoodButton">+ Food</button>
+    </div>
 </div>
-<button type="submit" name="plusButton">+</button>
 
 
-<div>
-    <label for="description">Description</label>
-    <textarea name="description"><%= plat.description %> </textarea> 
-</div>
+
 
 
 

@@ -1,0 +1,19 @@
+.dishes-index-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8rem;
+    #dishes-index-title {
+        grid-column: span 2;
+        margin: auto;
+    }
+    #dishes-index-form {
+        justify-self: right;
+    }
+    #dishes-index-links {
+        justify-self: left;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+}

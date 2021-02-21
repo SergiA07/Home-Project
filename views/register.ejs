@@ -1,0 +1,22 @@
+<div class="auth">
+    <h1 class="auth-title">Register</h1>
+    <% if(locals.userRegisterError != null) { %> 
+        <p class="auth_error-message"><%= userRegisterError %> </p>
+    <% } %>
+    <form class="auth_form" action="/auth/login" method="POST">
+        <label class="custom-field">
+            <input type="text" id="username" name="username" required>
+            <span class="placeholder">Enter Username</span>
+        </label>
+        <label class="custom-field">
+            <input type="email" id="email" name="email" required>
+            <span class="placeholder">Enter Email</span>
+        </label>
+        <label class="custom-field">
+            <input type="password" id="password" name="password" required>
+            <span class="placeholder">Enter Password</span>
+        </label>
+        <button class="button" type="submit"></button>
+    </form>
+    <a class="auth_link-button" href="/auth/login">Log In</a>
+</div>

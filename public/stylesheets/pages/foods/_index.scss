@@ -1,0 +1,22 @@
+.foods-index-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8rem;
+    #foods-index-title {
+        grid-column: span 2;
+        margin: auto;
+    }
+    #foods-index-form {
+        justify-self: right;
+    }
+    #foods-index-links {
+        justify-self: left;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+
+

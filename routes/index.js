@@ -1,15 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Dish = require('../models/dish')
+const User = require('../models/user')
+const verify = require('../public/javascripts/verifyToken')
 
-router.get('/', async (req, res) => {
-    let dishes
-    try {
-        dishes = await Disch.find().sort({ name: 'desc'}).limit(10).exec()
-    } catch {
-        dishes = []
-    }
-    res.render('index', {dishes: dishes});
-});
+router.get('/', verify, (req, res) => {
+    res.redirect('users/info')
+})
 
 module.exports = router;

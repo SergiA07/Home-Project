@@ -1,13 +1,18 @@
-<h2>Search Dishes</h2>
-<form action="dishes/search/" method="GET">
-    <label for="id">Name</label>
-    <select name="id" onchange="this.form.submit()">
-        <option disabled selected>-- Tria --</option>
-        <% dishes.forEach(dish => { %>
-            <option label="<%= dish.name %>" value="<%= dish.id %>"></option> 
-        <% }) %>  
-    </select>
-</form>
-<a href="/dishes/new">New Dish</a>
-<a href="/dishes/advancedSearch">Advanced Search</a>
+<div class="dishes-index-container">
+    <h1 id="dishes-index-title">Plats</h1>
+    <form id="dishes-index-form" action="dishes/search/" method="GET">
+        <select name="id" onchange="this.form.submit()" required>
+            <option disabled selected>-- Tria --</option>
+            <% dishes.forEach(dish => { %>
+                <option label="<%= dish.name %>" value="<%= dish.id %>"></option> 
+            <% }) %>  
+        </select>
+    </form>
+    <div id="dishes-index-links">
+        <a href="/dishes/new">New Dish</a>
+        <a href="/dishes/advancedSearch">Advanced Search</a>
+    </div>
+</div>
+
+
 

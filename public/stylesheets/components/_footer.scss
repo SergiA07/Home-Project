@@ -1,0 +1,121 @@
+.footer {
+    flex-shrink: 0;
+    width: 100vw;
+    height: auto;
+    background: #111;
+    color: rgb(205, 235, 247);
+    padding-top: 20px;
+    //display: flex;
+    //justify-content: space-between;
+    //padding: 0.5rem calc((100vw - 1200px) /2);
+    &_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        &-logo {
+            cursor: pointer;
+            color: rgb(205, 235, 247);
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 3rem;
+            //margin-left: 2rem;
+        }
+
+        &-text {
+            //text-align: center;
+            color: rgb(205, 235, 247);
+            font-size: 1.75rem;
+        }
+    
+        &-socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0 1rem 0;
+            li {
+                margin: 0 10px;
+                a{
+                    color: rgb(205, 235, 247);
+                    i {
+                        font-size: 3rem;
+                        transition: color 0.5s ease;
+                    }
+                    &:hover {
+                        color: aqua;
+                    }
+                }
+            }
+        }
+    }
+
+    &_bottom {
+        background: #000;
+        width: 100vw;
+        padding: 10px 0;
+        text-align: center;
+        p {
+            color: rgb(205, 235, 247);
+            font-size: 1.5rem;
+            word-spacing: 2px;
+            text-transform: capitalize;
+            span {
+                opacity: .4;
+                font-weight: 500;
+            }
+        }
+    }
+    /*
+    @include tablet {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    */
+        
+}
+
+/*
+footer {
+    background: rgba(33, 32, 32, 0.755);
+    border-top: 0.125rem solid black;
+    min-height: 10vh;
+    nav {
+        @include flexDisplay(row, wrap, space-between, center);
+        .header-title {
+            
+            text-decoration: none;
+            margin-left: 20px;
+            &:hover{
+                color: $secundaryTextColor;
+            }
+            }
+        ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            li {
+                list-style: none;
+                a {
+                    text-decoration: none;
+                    color: $primaryTextColor;
+                    
+                    padding: 5px;
+                    &:hover {
+                        color: $secundaryTextColor;
+                    }
+                }
+            }
+        }
+        button {
+            background: $primaryBtnColor;
+           
+            margin-right: 20px;
+            &:hover {
+                background: $secundaryBtnColor;
+            }
+        }
+    }
+}
+*/

@@ -1,0 +1,18 @@
+<div class="auth">
+    <h1 class="auth-title">Login</h1>
+    <% if(locals.userLoginError != null) { %> 
+        <p class="auth_error-message"><%= userLoginError %> </p>
+    <% } %>
+    <form class="auth_form" action="/auth/login" method="POST">
+        <label class="custom-field">
+            <input type="text" id="username" name="username" required>
+            <span class="placeholder">Enter Username</span>
+        </label>
+        <label class="custom-field">
+            <input type="password" id="password" name="password" required>
+            <span class="placeholder">Enter Password</span>
+        </label>
+        <button class="button" type="submit"></button>
+    </form>
+    <a class="auth_link-button" href="/auth/register">Sign Up</a>
+</div>

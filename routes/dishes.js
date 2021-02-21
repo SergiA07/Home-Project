@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Dish = require('../models/dish');
 const Food = require('../models/food');
+const verify = require('../public/javascripts/verifyToken')
 //const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
-router.get('/', async (req,res) => {
+router.get('/', verify, async (req,res) => {
     try {
         const dishes = await Dish.find();
         res.render('dishes/index', {
@@ -22,7 +23,7 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/new', async (req, res) => {
-    ingredients = getIngredients(req.body)
+    const ingredients = getIngredients(req.body)
     const dish = new Dish({
       name: req.body.name,
       ingredients: ingredients,
@@ -155,7 +156,7 @@ async function renderShowPage(slug, res, errorDeleting = false) {
         params = {
             dish: dish,
             dishes: dishes
-        }  
+        }
         if (errorDeleting) { params.errorMessage = 'Could not remove dish' } 
         res.render('dishes/show', params)
     } catch {

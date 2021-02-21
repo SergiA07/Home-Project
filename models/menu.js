@@ -1,44 +1,41 @@
 const mongoose = require('mongoose')
+const slugify = require('slugify')
 const Food = require('./food')
-const Plat = require('./dish')
-
-const platSchema = new mongoose.Schema({
-    plat: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Plat'
-    },
-    quantity: Number
-})
-
-const foodSchema = new mongoose.Schema({
-    food: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Food'
-    },
-    quantity: Number
-})
+const Dish = require('./dish')
 
 const menuSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String
-    },
     date: {
-      type: Date,
-      required: true
+        longDate: {type: Date, required: true},
+        dayOfWeek: {type: String, required: true},
     },
-    plats: [platSchema],
-    extras: [foodSchema]
-})
-  
-  /*
-  platSchema.virtual('coverImagePath').get(function() {
-    if (this.coverImage != null && this.coverImageType != null) {
-      return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
+    meals: [{
+        meal: {
+            type: mongoose.Schema.Types.ObjectId,
+            refPath: 'meals.onModel',
+            required: true
+        },
+        quantity: {
+            type: Number
+        },
+        onModel: {
+            type: String,
+            required: true,
+            enum: ['Food', 'Dish'] 
+        }
+    }],
+    slug: {
+        type: String,
+        required: true,
+        unique: true
     }
-  })
-  */
-  module.exports = mongoose.model('Menu', menuSchema)
+})
+
+
+menuSchema.pre('validate', function(next) {
+    if (this.date.dayOfWeek) {
+        this.slug = slugify(this.date.dayOfWeek+this.date.longDate.toISOString().split('T')[0], {lower: true, strict: true})
+    }
+    next()
+})
+
+ module.exports = mongoose.model('Menu', menuSchema)

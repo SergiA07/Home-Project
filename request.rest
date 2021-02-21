@@ -1,0 +1,12 @@
+//Send Request
+GET http://localhost:4000/login
+
+###
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username": "w",
+    "password": "ww"
+}

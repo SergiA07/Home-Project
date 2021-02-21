@@ -1,0 +1,18 @@
+@import "./media-queries";
+
+@mixin flexDisplay($direction, $wrap, $content, $alignItems, $alignContent: space-around) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $content;
+    align-items: $alignItems;
+    align-content: $alignContent;
+}
+
+@mixin lato($size, $style, $weight, $color) {
+    font-family: 'Lato';
+    font-size: $size;
+    font-style: $style;
+    font-weight: $weight;
+    color: $color;
+}
