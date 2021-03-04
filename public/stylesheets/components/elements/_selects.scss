@@ -1,0 +1,40 @@
+.select {
+    height: 2.5rem;
+    width: 12rem;
+    max-width: 100%; 
+    line-height: 1.3rem;
+    
+    color: #555;
+    font-size: $tiny;
+    text-align-last:center;
+    background-color: $buttonColor1-dark;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.02);
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        background-color: $buttonColor2;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+    }
+}
+
+.select-small {
+    @extend .select;
+    width: 10rem;
+    height: 1.75rem;
+    margin: auto 0;
+    border-radius: 3px;
+    line-height: 1.4rem;
+    border:none;
+    background-color: rgb(235, 231, 231);
+    font-size: $tiny;
+}
+
+
+
+

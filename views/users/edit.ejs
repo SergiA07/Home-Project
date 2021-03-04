@@ -1,0 +1,13 @@
+<div class="new-container">
+    <h1 class="title">Usuari</h1>
+    <h3 class="subtitle">Edita Usuari</h3>
+    <div class="content">
+        <form action="/users/<%= user.id %>?_method=PUT" method="POST">
+            <%- include('_form_fields') %>
+        </form>
+    </div>
+</div>
+<div class="page-links" id="dishes-links">
+    <a class="link-page" href="/dishes">Plats</a>
+    <a class="link-page" href="/dishes/advancedSearch">Cerca Avançada</a>
+</div>

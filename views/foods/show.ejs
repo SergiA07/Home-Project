@@ -1,26 +1,46 @@
-<div>
-    <a href="/foods/new">New Food</a>
+<div class="show-container">
+    <h1 class="title">Aliments</h1>
+    <h3 class="subtitle"><%= food.name %></h3>
+    <div class="content">
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Fats:</label>
+            <span class="span"><%= food.fats %></span>
+        </div>
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Carbs:</label>
+            <span class="span"><%= food.carbs %></span>
+        </div>
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Protein:</label>
+            <span class="span"><%= food.protein %></span>
+        </div>
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Fiber:</label>
+            <span class="span"><%= food.fiber %></span>
+        </div>
+        <div class="content-links">
+            <a class="link" href="/foods/<%= food.slug %>/edit">Edit</a>
+            <%- include('../components/deleteForm',
+                {url: `/foods/${food.id}`}
+                )
+            %>
+        </div>
+        <div class="content-item">
+            <form action="/foods/search" method="GET">
+                    <select class="select" name="id" onchange="this.form.submit()">
+                        <option disabled selected>-- Tria --</option>
+                        <% foods.forEach((food,index) => { %>
+                            <option label="<%= food.name %>" value="<%= food.id %>"></option> 
+                        <% }) %>  
+                    </select>
+            </form>
+        </div>
+    </div>
 </div>
-<h2>Nom: <%= food.name %> </h2>
-<h2>Fats: <%= food.fats %> </h2>
-<h2>Carbs: <%= food.carbs %> </h2>
-<h2>Protein: <%= food.protein %> </h2>
-<h2>Fiber: <%= food.fiber %> </h2>
-<a href="/foods/<%= food.slug %>/edit">Edit</a>
-<%- include('../templates/deleteForm',
-    {url: `/foods/${food.id}`}
-    )
-%>
-<form action="/foods/search" method="GET">
-    <label for="id">Name</label>
-    <select name="id" onchange="this.form.submit()">
-        <option disabled selected>-- Tria --</option>
-        <% foods.forEach((food,index) => { %>
-            <option label="<%= food.name %>" value="<%= food.id %>"></option> 
-        <% }) %>  
-    </select>
-</form>
- 
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/foods/new">Nou Aliment</a>
+    <a class="link-page" href="/foods/advancedSearch">Cerca Avançada</a>
+</div>
 
 
 

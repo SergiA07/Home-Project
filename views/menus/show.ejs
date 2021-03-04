@@ -1,25 +1,34 @@
-<h2><%= plat.name %></h2>
-<% plat.ingredients.forEach((ingredient,index) => { %>
-    <% if (ingredient.aliment != undefined ) { %>
-        <div>
-            Ingredient<%=index+1%>: <%= ingredient.aliment.name %> - <%= ingredient.quantity %> gr.
-        </div>
-    <% } %>
-<% }) %>  
-<div>Last Update Date: <%= plat.updateDate.toDateString() %></div>
-<div>Description: <%= plat.description %></div>
-<a href="/plats/<%= plat.id %>/edit">Edit</a>
-<%- include('../templates/deleteForm',
-    {url: `/plats/${plat.id}`})
-%>
-<form action="/plats/search/" method="GET">
-    <label for="id">Name</label>
-    <select name="id" onchange="this.form.submit()">
-        <option disabled selected>-- Tria --</option>
-        <% plats.forEach(plat => { %>
-            <option label="<%= plat.name %>" value="<%= plat.id %>"></option> 
+<div class="show-container">
+    <h1 class="title">Menus</h1>
+    <h3 class="subtitle"><%= menu.date.dayOfWeek %></h3>
+    <div class="content">
+        <% menu.meals.forEach((meal,index) => { %>
+            <% if (meal.onModel === 'Dish') { %>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show" for="name">Plat:</label>
+                    <span class="span"><%= meal.meal.name %></span>  
+                </div> 
+            <% } else if (meal.onModel === 'Food') { %>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show" for="name">Aliment:</label>
+                    <span class="span"><%= meal.meal.name %> - <%= meal.quantity %> gr.</span>  
+                </div> 
+            <% } %>
         <% }) %>  
-    </select>
-</form>
- 
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Date:</label>
+            <span class="span"><%= menu.date.longDate.toDateString() %></span>  
+        </div>
+        <div class="content-links">
+            <a class="link" href="/menus/<%= menu.slug %>/edit">Edit</a>
+            <button class="button" type="submit" >Delete</button> <!-- TODO -->
+        </div>
+    </div>
+</div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/menus/new">Nou Menu</a>
+    <a class="link-page" href="/menus/advancedSearch">Cerca Avançada</a>
+</div>
+
+
 

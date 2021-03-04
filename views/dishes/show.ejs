@@ -1,25 +1,42 @@
-<h2><%= dish.name %></h2>
-<% dish.ingredients.forEach((ingredient,index) => { %>
-    <% if (ingredient.food != undefined ) { %>
-        <div>
-            Ingredient<%=index+1%>: <%= ingredient.food.name %> - <%= ingredient.quantity %> gr.
+<div class="show-container">
+    <h1 class="title">Plats</h1>
+    <h3 class="subtitle"><%= dish.name %></h3>
+    <div class="content">
+        <% dish.ingredients.forEach((ingredient,index) => { %>
+            <% if (ingredient.food != undefined ) { %>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show" for="name">Ingredient<%=index+1%>:</label>
+                    <span class="span"><%= ingredient.food.name %> - <%= ingredient.quantity %> gr.</span>
+                </div>
+
+            <% } %>
+        <% }) %> 
+        <div class="content-double-item-column">
+            <label class="label" id="label-show" for="name">Description:</label>
+            <span class="span"><%= dish.description %></span>  
+        </div> 
+        <div class="content-links">
+            <a class="link" href="/dishes/<%= dish.slug %>/edit">Edit</a>
+            <%- include('../components/deleteForm',
+                {url: `/dishes/${dishes.id}`}
+                )
+            %>
         </div>
-    <% } %>
-<% }) %>  
-<div>Last Update Date: <%= dish.updateDate.toDateString() %></div>
-<div>Description: <%= dish.description %></div>
-<a href="/dishes/<%= dish.slug %>/edit">Edit</a>
-<%- include('../templates/deleteForm',
-    {url: `/dishes/${dish.id}`})
-%>
-<form action="/dishes/search/" method="GET">
-    <label for="id">Name</label>
-    <select name="id" onchange="this.form.submit()">
-        <option disabled selected>-- Tria --</option>
-        <% dishes.forEach(dish => { %>
-            <option label="<%= dish.name %>" value="<%= dish.id %>"></option> 
-        <% }) %>  
-    </select>
-</form>
+        <div class="content-item">
+            <form action="/dishes/search/" method="GET">
+                <select class="select" name="id" onchange="this.form.submit()">
+                    <option disabled selected>-- Tria --</option>
+                    <% dishes.forEach(dish => { %>
+                        <option label="<%= dish.name %>" value="<%= dish.id %>"></option> 
+                    <% }) %>  
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="page-links" id="dishes-links">
+    <a class="link-page" href="/dishes/new">Nou Plat</a>
+    <a class="link-page" href="/dishes/advancedSearch">Cerca Avançada</a>
+</div>
  
 

@@ -1,0 +1,39 @@
+.link {
+    cursor: pointer;
+    width: 90px;
+    height: 25px;
+    text-align: center;
+    font-size: $smaller;
+    vertical-align: middle;
+    border-radius: 3px;
+    background: $buttonColor1-dark;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.2);
+    &:hover {
+        background: $buttonColor2;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.3);
+    }
+}
+
+.link-title {
+    font-size: $large;
+    font-weight: 600;
+    color: $black-dark;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration-line: underline;
+}
+
+.link-page {
+    height: 100%;
+    background: rgba(205, 202, 199, 0.5);
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.09);
+    text-align: center;
+    line-height: 25px;
+    padding: 0.5rem 0rem;
+    font-size: $tiny;
+    font-weight: 500;
+    text-transform: uppercase;
+    &:hover {
+        font-weight: 600;
+    }
+}

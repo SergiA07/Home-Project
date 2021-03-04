@@ -1,0 +1,5 @@
+.page-links {
+    &#dishes-links {
+        @include page-links(2);
+    }
+}

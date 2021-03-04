@@ -1,0 +1,5 @@
+.page-links {
+    &#users-links {
+        @include page-links(1);
+    }
+}

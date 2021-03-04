@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Food = require('../models/food');
 const Dish = require('../models/dish');
+const verify = require('../public/javascripts/verifyToken')
 
 
-router.get('/', async (req, res) => {
+router.get('/', verify, async (req, res) => {
     try {
         const foods = await Food.find();
         res.render('foods/index', {
@@ -15,11 +16,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', verify, (req, res) => {
     renderNewPage(res, new Food())
 })
 
-router.post('/new', async (req,res) => {
+router.post('/new',  verify, async (req,res) => {
     const food = new Food({
         name: req.body.name,
         fats: req.body.fats,
@@ -35,7 +36,7 @@ router.post('/new', async (req,res) => {
     }
 })
 
-router.get('/search/', async (req, res) => {
+router.get('/search/',  verify, async (req, res) => {
     try {
         const food = await Food.findById(req.query.id)
         res.redirect(`/foods/${food.slug}`)
@@ -44,7 +45,7 @@ router.get('/search/', async (req, res) => {
     }
 })
 
-router.get('/advancedSearch', async (req, res) => {
+router.get('/advancedSearch',  verify, async (req, res) => {
     let query = Food.find()
     let searchStarted = true
     if (req.query.name != null && req.query.name != '') {
@@ -73,7 +74,7 @@ router.get('/advancedSearch', async (req, res) => {
     }
 })
 
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', verify, async (req, res) => {
     renderShowPage(req.params.slug, res)
 })
 
@@ -86,7 +87,7 @@ router.get('/:slug/edit', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', verify, async (req, res) => {
     let food
     try {
         food = await Food.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -100,7 +101,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verify, async (req, res) => {
     let food
     try {
         food = await Food.findById(req.params.id)

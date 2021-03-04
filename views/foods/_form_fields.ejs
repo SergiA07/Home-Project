@@ -1,20 +1,24 @@
-<div>
-<label for="name">Name</label>
-<input required type="text" name="name" value="<%= food.name %>" />
+<div class="content-double-item-row">
+    <label class="label" for="name">Name</label>
+    <input required type="text" class="input" name="name" value="<%= food.name %>" />
 </div>
-<div>
-<label for="fats">Fats</label>
-<input required type="number" name="fats" value="<%= food.fats %>" />
+<div class="content-double-item-row">
+    <label class="label" for="fats">Fats</label>
+    <input required type="number" class="input" name="fats" value="<%= food.fats %>" />
 </div>
-<div></div>
-<label for="carbs">Carbs</label>
-<input required type="number" name="carbs" value="<%= food.carbs %>" />
+<div class="content-double-item-row">
+    <label class="label" for="carbs">Carbs</label>
+    <input required type="number" class="input" name="carbs" value="<%= food.carbs %>" />
 </div>
-<div>
-<label for="protein">Protein</label>
-<input required type="number" name="protein" value="<%= food.protein %>" />
+<div class="content-double-item-row">
+    <label class="label" for="protein">Protein</label>
+    <input required type="number" class="input" name="protein" value="<%= food.protein %>" />
 </div>
-<div>
-<label for="fiber">Fiber</label>
-<input required type="number" name="fiber" value="<%= food.fiber %>" />
+<div class="content-double-item-row">
+    <label class="label" for="fiber">Fiber</label>
+    <input required type="number" class="input" name="fiber" value="<%= food.fiber %>" />
+</div>
+<div class="content-links">
+    <a class="link" href="/foods">Cancel</a>
+    <button class="button" type="submit" name="createButton">Confirm</button>
 </div>

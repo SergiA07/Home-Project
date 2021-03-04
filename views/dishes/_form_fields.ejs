@@ -1,20 +1,17 @@
-<div>
-    <label for="name">Name</label>
-    <input type="text" name="name" value="<%= dish.name %>" />
+<div class="content-double-item-row">
+    <label class="label" for="name">Name</label>
+    <input required type="text" class="input" name="name" value="<%= dish.name %>" />
 </div>
-
-<div>
-    <label for="updateDate">Last Update Date</label>
+<!-- <div class="new-form_item">
+    <label class="label" for="updateDate">Last Update Date</label>
     <input type="date" name="updateDate"
         value="<%= dish.updateDate == null ? '' : dish.updateDate.toISOString().split('T')[0] %>" /> 
-</div>
-
-
-<div>
+</div> -->
+<div class="content-multiple-item">
     <% dish.ingredients.forEach((ingredient,index) => { %>
-        <div>
-            <label for="id<%=index%>">Ingredient <%=index + 1%>:</label>
-            <select name="ingredientText<%=index%>">
+        <div class="content-multiple-item-element">
+            <label class="label" for="id<%=index%>">Ingredient <%=index + 1%>:</label>
+            <select class="select-small" id="new-dish-select" name="ingredientText<%=index%>">
                 <option disabled selected>-- Tria --</option>
                 <% foods.forEach(food => { %>
                     <% if (food.id == ingredient.food) { %>
@@ -24,19 +21,24 @@
                     <% } %>    
                 <% }) %>  
             </select>
-            <input type="number" name="ingredientNumber<%=index%>" value="<%= ingredient.quantity %>"  />
+            <label class="label" for="id<%=index%>"> grams:</label>
+            <input required class="input-small" type="number" name="ingredientNumber<%=index%>" value="<%= ingredient.quantity %>"  />
             <% if (dish.ingredients.length > 1) { %>
-                <button type="submit" name="eraseButton<%=index%>">X</button>
+                <button class="xButton" id="x-item" type="submit" name="eraseButton<%=index%>">X</button>
             <% } %>
         </div>
     <% }) %>
 </div>
-<button type="submit" name="plusButton">+</button>
-
-
-<div>
-    <label for="description">Description</label>
-    <textarea name="description"><%= dish.description %> </textarea> 
+<div class="content-item">
+    <button type="submit" class="plusButton" name="plusButton">+</button>
+</div>
+<div class="content-double-item-column">
+    <label class="label" for="description">Description</label>
+    <textarea class="textarea" name="description"><%= dish.description %> </textarea> 
+</div>
+<div class="content-links">
+    <a class="link" href="/dishes">Cancel</a>
+    <button class="button" type="submit" name="createButton">Confirm</button>
 </div>
 
 

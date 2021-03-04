@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Dish = require('../models/dish');
 const Food = require('../models/food');
-//const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+const verify = require('../public/javascripts/verifyToken')
 
-router.get('/', async (req,res) => {
+
+router.get('/', verify, async (req,res) => {
     try {
         const dishes = await Dish.find();
         res.render('dishes/index', {
@@ -15,26 +16,26 @@ router.get('/', async (req,res) => {
     }
 })
 
-router.get('/new', async (req, res) => {
+router.get('/new', verify, async (req, res) => {
     let dish = new Dish()
     dish.ingredients = [{}]
     renderNewPage(res, dish)
 })
 
-router.post('/new', async (req, res) => {
-    ingredients = getIngredients(req.body)
+router.post('/new', verify, async (req, res) => {
+    const ingredients = getIngredients(req.body)
     const dish = new Dish({
       name: req.body.name,
       ingredients: ingredients,
-      updateDate: new Date(req.body.updateDate),
+      //updateDate: new Date(req.body.updateDate),
       description: req.body.description
     })
     if (req.body.createButton != null) {
         try {
-        const newDish = await dish.save()
-        res.redirect(`/dishes/${newDish.slug}`)
-        } catch {
-        renderNewPage(res, dish, true)
+            const newDish = await dish.save()
+            res.redirect(`/dishes/${newDish.slug}`)
+        } catch (e) {
+            renderNewPage(res, dish, true)
         }
     } else {
         renderNewPage(res, dish, false)
@@ -51,7 +52,7 @@ router.get('/search/', async (req, res) => {
 })
 
 // TO DO
-router.get('/advancedSearch', async (req, res) => { 
+router.get('/advancedSearch', verify, async (req, res) => { 
     let query = Dish.find()
     if (req.query.title != null && req.query.title != '') {
       query = query.regex('title', new RegExp(req.query.title, 'i'))
@@ -64,7 +65,7 @@ router.get('/advancedSearch', async (req, res) => {
     }
     try {
       const dishes = await query.exec()
-      res.render('dishes/index', {
+      res.render('dishes/advancedSearch', {
         dishes: dishes,
         searchOptions: req.query
       })
@@ -73,11 +74,11 @@ router.get('/advancedSearch', async (req, res) => {
     }
 })
   
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', verify, async (req, res) => {
     renderShowPage(req.params.slug, res)
 })
 
-router.get('/:slug/edit', async (req, res) => {
+router.get('/:slug/edit', verify, async (req, res) => {
     try {
         const dish = await Dish.findOne({ slug: req.params.slug })
         renderEditPage(res, dish)
@@ -86,19 +87,20 @@ router.get('/:slug/edit', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', verify, async (req, res) => {
     ingredients = getIngredients(req.body)
     let dish
     try {
       dish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new: true})
       dish.ingredients = ingredients
-      if (req.body.updateButton != null) {
+      if (req.body.createButton != null) {
         await dish.save()
         res.redirect(`/dishes/${dish.slug}`)
       } else {
         renderEditPage(res, dish, true)
       }
-    } catch {
+    } catch (e) {
+        console.log(e)
         if (dish != null) {
             renderEditPage(res, dish, true)
         } else {
@@ -155,7 +157,7 @@ async function renderShowPage(slug, res, errorDeleting = false) {
         params = {
             dish: dish,
             dishes: dishes
-        }  
+        }
         if (errorDeleting) { params.errorMessage = 'Could not remove dish' } 
         res.render('dishes/show', params)
     } catch {
@@ -198,13 +200,5 @@ function getIngredients(body) {
     return ingredients
 }
 
-function saveCover(book, coverEncoded) {
-if (coverEncoded == null) return
-const cover = JSON.parse(coverEncoded)
-if (cover != null && imageMimeTypes.includes(cover.type)) {
-    book.coverImage = new Buffer.from(cover.data, 'base64')
-    book.coverImageType = cover.type
-    }
-}
-  
+
 module.exports = router

@@ -1,0 +1,35 @@
+<div class="show-container">
+    <h3 class="subtitle"><%= user.username %></h3>
+    <div class="content">
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Nom:</label>
+            <span class="span"><%= user.username %></span>  
+        </div> 
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="email">Email:</label>
+            <span class="span"><%= user.email %></span>  
+        </div>
+        <div class="content-item info-Button">
+            <button class="button">Info</button>
+        </div>
+        <div class="content-infoData">
+            <% if (user.weight != null) { %>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show">Pes:</label>
+                    <span class="span"><%= user.weight %></span>
+                </div>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show">Calories:</label>
+                    <span class="span"><%= user.calories %></span>
+                </div>
+            <% } else { %>
+                <div class="content-item">
+                    <span class="span">Please Update your Personal Info</span>
+                </div>
+            <% } %>
+            <!-- <div class="content-links">
+                <a class="link" href="/users/<%= user.slug %>/edit">Edit</a>
+            </div> -->
+        </div>
+    </div>
+</div>

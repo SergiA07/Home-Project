@@ -1,0 +1,56 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $poppins, $sans-serif;
+}
+
+main {
+    background: #d8d8d8;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-container{
+    flex: 1 0 auto;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: $huge;
+    color:#222;
+}
+h2 {
+    color: $primaryTextColor;
+    font-size: $big;
+}
+h3 {
+    color: $primaryTextColor;
+    font-size: $large;
+}
+h4 {
+    color: $primaryTextColor;
+    font-size: 2.5rem;
+}
+p, li, a, button {
+    color: $primaryTextColor;
+    font-size: 2rem;
+    text-decoration: none;
+    outline: none;
+}
+
+
+ 
