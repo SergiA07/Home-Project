@@ -3,8 +3,6 @@ const slugify = require('slugify')
 const bcrypt = require('bcrypt');
 const { number } = require('joi');
 
-
-
 const userSchema = new mongoose.Schema({
     username: {
         type: String,

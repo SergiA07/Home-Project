@@ -51,8 +51,7 @@ router.get('/search/', async (req, res) => {
     }
 })
 
-// TO DO
-router.get('/advancedSearch', verify, async (req, res) => { 
+router.get('/advancedSearch', verify, async (req, res) => {  // TO DO
     let query = Dish.find()
     if (req.query.title != null && req.query.title != '') {
       query = query.regex('title', new RegExp(req.query.title, 'i'))
@@ -73,7 +72,7 @@ router.get('/advancedSearch', verify, async (req, res) => {
       res.redirect('/')
     }
 })
-  
+
 router.get('/:slug', verify, async (req, res) => {
     renderShowPage(req.params.slug, res)
 })
@@ -199,6 +198,5 @@ function getIngredients(body) {
     }
     return ingredients
 }
-
 
 module.exports = router

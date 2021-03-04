@@ -20,7 +20,7 @@
         width: 230px;
         margin: auto 0;
         font-size: $big;
-        color: #222;
+        color: $black-light;
         font-weight: bold;
         margin-left: 2rem;
     }
@@ -37,7 +37,7 @@
         .bar {
             height: 3px;
             width: 100%;
-            background-color:$primaryTextColor;
+            background-color:$black-dark;
             border-radius: 6px;
         }
         @include tablet {
@@ -103,7 +103,7 @@
                 text-align: center;
                 padding: 1rem 1rem;
                 width: 15rem;
-                background: rgb(204, 204, 204);
+                background: $turquoise-light;
                 border-radius: 6px;
                 display: none;
                 flex-direction: column;
@@ -117,7 +117,7 @@
                     &:hover {
                         border-radius: 6px;
                         width: 100%;
-                        background: $turquoise-dark;
+                        background: $gray2-light;
                     }
                 }
                 &-arrow {
@@ -126,7 +126,7 @@
                     height: 11px;
                     top: -3px;
                     left: 15px;
-                    background: rgb(204, 204, 204);
+                    background: $turquoise-light;
                     transform: rotate(45deg);
                 }
             }
@@ -241,13 +241,3 @@
         }
     }
 }
-
-
-
-
-
-
-
-
- //@extend
- //calculations

@@ -4,10 +4,10 @@
     max-width: 100%; 
     line-height: 1.3rem;
     
-    color: #555;
+    color: $gray-dark;
     font-size: $tiny;
     text-align-last:center;
-    background-color: $buttonColor1-dark;
+    background-color: $gray2-light;
     border: none;
     border-radius: 3px;
     box-shadow: 0 1px 0 1px rgba(0,0,0,.02);
@@ -18,7 +18,7 @@
         outline: none;
     }
     &:hover {
-        background-color: $buttonColor2;
+        background-color: $gray2-dark;
         box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
     }
 }
@@ -31,7 +31,7 @@
     border-radius: 3px;
     line-height: 1.4rem;
     border:none;
-    background-color: rgb(235, 231, 231);
+    background-color: $white-broken2;
     font-size: $tiny;
 }
 
