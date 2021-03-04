@@ -9,10 +9,11 @@ const verify = require('../public/javascripts/verifyToken')
 router.get('/', verify, async (req,res) => {
     try {
         const user = await User.findOne({ _id: req.user.user_id})
-        const menus = await Menu.find()
+        const menus = await Menu.find({user: user.id})
+                            .sort({"date.longDate": "1"})
+                            .limit(5)
                             .populate('meals.meal')
                             .exec()
-        res.locals.loggedInUser = user.username                    
         res.render('menus/index', {
             menus: menus
         })
@@ -21,8 +22,9 @@ router.get('/', verify, async (req,res) => {
     }
 })
 
-router.get('/new', async (req, res) => {
+router.get('/new', verify, async (req, res) => {
     try {
+        const user = await User.findOne({ _id: req.user.user_id})
         const menu = new Menu()
         renderNewPage(res, menu)
     } catch {
@@ -30,7 +32,7 @@ router.get('/new', async (req, res) => {
     }
 })
 
-router.post('/new', async (req, res) => {
+router.post('/new', verify, async (req, res) => {
     const meals = getMeals(req.body)
     const date = getDate(req.body.scheduledDate)
     const menu = new Menu({
@@ -39,6 +41,8 @@ router.post('/new', async (req, res) => {
     })
     if (req.body.createButton != null) {
         try {
+            const user = await User.findOne({ _id: req.user.user_id})
+            menu.user = user
             const newMenu = await menu.save()
             res.redirect(`/menus/${newMenu.slug}`)
         } catch {
@@ -48,13 +52,27 @@ router.post('/new', async (req, res) => {
         renderNewPage(res, menu, false)
     }
 })
+
+router.get('/advancedSearch',  verify, async (req, res) => {
+    try {
+      res.render('menus/advancedSearch')
+    } catch {
+      res.redirect('/')
+    }
+})
     
-router.get('/:slug', async (req, res) => {
-    renderShowPage(req.params.slug, res)
+router.get('/:slug', verify, async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.user.user_id})
+        renderShowPage(req.params.slug, res)
+    } catch {
+        res.redirect('/')
+    }
 })
 
-router.get('/:slug/edit', async (req, res) => {
+router.get('/:slug/edit', verify, async (req, res) => {
     try {
+        const user = await User.findOne({ _id: req.user.user_id})
         const menu = await Menu.findOne({ slug: req.params.slug })
         renderEditPage(res, menu)
     } catch {
@@ -62,15 +80,16 @@ router.get('/:slug/edit', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', verify, async (req, res) => {
     const meals = getMeals(req.body)
     const date = getDate(req.body.scheduledDate)
     let menu
     try {
+      const user = await User.findOne({ _id: req.user.user_id})
       menu = await Menu.findByIdAndUpdate(req.params.id, req.body, {new: true})
       menu.meals = meals
       menu.date = date
-      if (req.body.updateButton != null) {
+      if (req.body.createButton != null) {
         await menu.save()
         res.redirect(`/menus/${menu.slug}`)
       } else {
@@ -85,8 +104,9 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req,res) => {
+router.delete('/:id', verify, async (req,res) => {
     try {
+        const user = await User.findOne({ _id: req.user.user_id})
         await Menu.findByIdAndDelete(req.params.id)
         res.redirect('/menus')
     } catch {
@@ -199,7 +219,7 @@ function getMeals(body) {
 }
 
 function getDate(date) {
-    const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    const weekDays = ['Diumenge', 'Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte']
     let dayOfWeek = new Date(date).getDay(); 
     if (!isNaN(dayOfWeek) && dayOfWeek != null) dayOfWeek = weekDays[dayOfWeek]
     let dateObject = {

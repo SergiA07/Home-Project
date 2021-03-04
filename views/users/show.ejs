@@ -1,2 +1,35 @@
-<h2><%= user %> </h2>
-<a href="/auth/logout">Logout</a>
+<div class="show-container">
+    <h1 class="title">Proper Menu</h1>
+    <div class="content">
+        <div class="menus-index-content-item">
+            <% if(menu != null) { %> 
+                <div class="menus-index-content-item-day" >
+                    <a class="link-title" href="/menus/<%= menu.slug %>/"><%= menu.date.dayOfWeek %></a>
+                </div>
+                <div class="menus-index-content-item-date">
+                    <span class="span"><%= menu.date.longDate.toDateString() %></span> 
+                </div> 
+                <% menu.meals.forEach((meal,index) => { %>
+                    <% if (meal.onModel === 'Dish') { %>
+                        <div class="menus-index-content-item-ingredient" >
+                            <span class="span"><%= meal.meal.name %></span> 
+                        </div>
+                    <% } else if (meal.onModel === 'Food') { %>
+                        <div class="menus-index-content-item-ingredient">
+                            <span class="span"><%= meal.meal.name %> - <%= meal.quantity %> gr</span>
+                        </div>
+                    <% } %>
+                <% }) %> 
+            <% } else { %>
+                <div class="menus-index-content-item">
+                    <span class="span">No tens cap proper menu disponible</span>
+                </div>
+            <% } %> 
+        </div>   
+    </div>
+</div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/users/<%= user.slug %>/info">Usuari</a>
+    <a class="link-page" href="/users/<%= user.slug %>/info">- TO DO-</a>
+</div>
+

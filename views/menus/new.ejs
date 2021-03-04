@@ -1,6 +1,13 @@
-<h2>New Menu</h2>
-<form action="/menus/new" method="POST">
-  <%- include('_form_fields') %>
-  <a href="/menus">Cancel</a>
-  <button type="submit" name="createButton">Create</button>
-</form>
+<div class="new-container">
+    <h1 class="title">Menus</h1>
+    <h3 class="subtitle">Introdueix nou menu</h3>
+    <div class="content">
+        <form action="/menus/new/" method="POST">
+            <%- include('_form_fields') %>
+        </form>
+    </div>
+</div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/menus">Menus</a>
+    <a class="link-page" href="/menus/advancedSearch">Cerca Avançada</a>
+</div>

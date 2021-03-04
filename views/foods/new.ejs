@@ -1,6 +1,13 @@
-<h1>Create</h1>
-<form action="/foods/new/" method="POST">
-  <%- include('_form_fields') %>
-  <a href="/foods">Cancel</a>
-  <button type="submit">Create</button>
-</form>
+<div class="new-container">
+    <h1 class="title">Aliments</h1>
+    <h3 class="subtitle">Introdueix nou aliment</h3>
+    <div class="content">
+        <form action="/foods/new/" method="POST">
+            <%- include('_form_fields') %>
+        </form>
+    </div>
+</div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/foods">Aliments</a>
+    <a class="link-page" href="/foods/advancedSearch">Cerca Avançada</a>
+</div>

@@ -1,8 +1,15 @@
-<h1>Edit</h1>
-<form action="/foods/<%= food.id %>?_method=PUT" method="POST">
-  <%- include('_form_fields') %>
-  <a href="/foods/<%= food.slug %>">Cancel</a>
-  <button type="submit">Update</button>
-</form>
+<div class="new-container">
+    <h1 class="title">Aliments</h1>
+    <h3 class="subtitle">Edita aliment</h3>
+    <div class="content">
+        <form action="/foods/<%= food.id %>?_method=PUT" method="POST">
+            <%- include('_form_fields') %>
+        </form>
+    </div>
+</div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/foods">Aliments</a>
+    <a class="link-page" href="/foods/advancedSearch">Cerca Avançada</a>
+</div>
 
 

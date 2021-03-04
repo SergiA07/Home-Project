@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const { number } = require('joi');
+
+
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -26,9 +29,16 @@ const userSchema = new mongoose.Schema({
         min: 6,
         unique: true,
         required: true
+    },
+    weight: {
+        type: Number,
+        default: '70'
+    },
+    calories: {
+        type: Number,
+        default: '2500'
     }
 })
-
 
 userSchema.pre('validate', async function(next) {
     if (this.username) {

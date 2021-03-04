@@ -2,11 +2,25 @@ const mongoose = require('mongoose')
 const slugify = require('slugify')
 const Food = require('./food')
 const Dish = require('./dish')
+const User = require('./user')
+
+const ingredientSchema = new mongoose.Schema({
+    food: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Food'
+    },
+    quantity: Number
+})
 
 const menuSchema = new mongoose.Schema({
     date: {
         longDate: {type: Date, required: true},
         dayOfWeek: {type: String, required: true},
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     meals: [{
         meal: {
@@ -29,7 +43,6 @@ const menuSchema = new mongoose.Schema({
         unique: true
     }
 })
-
 
 menuSchema.pre('validate', function(next) {
     if (this.date.dayOfWeek) {

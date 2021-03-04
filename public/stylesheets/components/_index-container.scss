@@ -1,0 +1,11 @@
+.index-container {
+    width: 90%;
+    margin: 5rem auto;
+    margin-bottom: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-gap: 2rem 0;
+    justify-items: center;
+    padding-bottom: 4rem;
+}
+

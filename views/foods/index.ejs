@@ -1,16 +1,21 @@
-<div class="foods-index-container">
-    <h1 id="foods-index-title">Aliments</h1>
-    <form id="foods-index-form" action="foods/search/" method="GET">
-        <select name="id" onchange="this.form.submit()" required>
-            <option disabled selected value="">-- Tria --</option>
-            <% foods.forEach((food,index) => { %>
-                <option label="<%= food.name %>" value="<%= food.id %>"></option> 
-            <% }) %>  
-        </select>
-    </form>
-    <div id="foods-index-links">
-        <a id="foods-index-link" href="/foods/new">New Food</a>
-        <a id="foods-index-link" href="/foods/advancedSearch">Advanced Search</a>
+<div class="index-container">
+    <h1 class="title">Aliments</h1>
+    <div class="content">
+        <div class="content-item">
+            <form action="foods/search/" method="GET">
+                <select class="select" name="id" onchange="this.form.submit()" required>
+                    <option disabled selected value="">-- Tria --</option>
+                    <% foods.forEach((food,index) => { %>
+                        <option label="<%= food.name %>" value="<%= food.id %>"></option> 
+                    <% }) %>  
+                </select>
+            </form>
+        </div>
     </div>
 </div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/foods/new">Nou Aliment</a>
+    <a class="link-page" href="/foods/advancedSearch">Cerca Avançada</a>
+</div>
+
 

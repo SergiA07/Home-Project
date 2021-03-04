@@ -1,13 +1,12 @@
-.custom-field {
+.authForm-field {
     position: relative;
     font-size: 1.5rem;
     padding-top: 2rem;
     margin-bottom: .5rem;
     display: flex;
     flex-direction: column;
-    input {
+    .auth-input {
         appearance: none;
-        transition: all 0.3s ease;
         padding: 12px;
         width: 250px;
         outline: none;
@@ -17,34 +16,35 @@
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
         background:
-            linear-gradient(90deg, #222, #222) center bottom/0 2px no-repeat,
-            linear-gradient(90deg, #bbb, #bbb) left bottom/100% 2px no-repeat,
+            linear-gradient(90deg, $black-dark, $black-light) center bottom/0 2px no-repeat,
+            linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat,
             linear-gradient(90deg, #eee, #fff) left bottom/100% no-repeat; 
+            
         &:focus,
         &:valid {
+            transition: background-size 0.3s ease;
             background-size: 100% 2px, 100% 2px, 100%;
-            border-color: #222;
-            transition-delay: 0.1s;
+            border-color: $black-dark;
         }
-        &:focus + .placeholder,
-        &:valid + .placeholder {
+        &:focus + .auth-placeholder,
+        &:valid + .auth-placeholder {
+            transition:
+                top 0.3s ease,
+                color 0.3s ease,
+                font-size 0.3s ease;
             top: 1rem;
-            font-size: 1.25rem;
-            color: #222;
-            
+            font-size: $tiny;
+            font-weight: 500;
+            color: $turquoise-light;
         }
     }
-    .placeholder {
+    .auth-placeholder {
         position: absolute;
-        font-size: 1.35rem;
         left: 1rem;
         padding: 0 5px;
         top: calc(50% + 1rem);
         transform: translateY(-50%);
-        color: #aaa;
-        transition:
-            top 0.3s ease,
-            color 0.3s ease,
-            font-size 0.3s ease;
+        font-size: $tiny;
+        color: $gray-light;
     }
 }

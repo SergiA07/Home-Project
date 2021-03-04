@@ -1,22 +1,34 @@
-<h2><%= menu.date.dayOfWeek %></h2>
-<% menu.meals.forEach((meal,index) => { %>
-    <% if (meal.onModel === 'Dish') { %>
-        <div>
-            Dish: <%= meal.meal.name %>
+<div class="show-container">
+    <h1 class="title">Menus</h1>
+    <h3 class="subtitle"><%= menu.date.dayOfWeek %></h3>
+    <div class="content">
+        <% menu.meals.forEach((meal,index) => { %>
+            <% if (meal.onModel === 'Dish') { %>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show" for="name">Plat:</label>
+                    <span class="span"><%= meal.meal.name %></span>  
+                </div> 
+            <% } else if (meal.onModel === 'Food') { %>
+                <div class="content-double-item-row">
+                    <label class="label" id="label-show" for="name">Aliment:</label>
+                    <span class="span"><%= meal.meal.name %> - <%= meal.quantity %> gr.</span>  
+                </div> 
+            <% } %>
+        <% }) %>  
+        <div class="content-double-item-row">
+            <label class="label" id="label-show" for="name">Date:</label>
+            <span class="span"><%= menu.date.longDate.toDateString() %></span>  
         </div>
-    <% } else if (meal.onModel === 'Food') { %>
-        <div>
-            Food: <%= meal.meal.name %> - <%= meal.quantity %> gr.
+        <div class="content-links">
+            <a class="link" href="/menus/<%= menu.slug %>/edit">Edit</a>
+            <button class="button" type="submit" >Delete</button> <!-- TODO -->
         </div>
-    <% } %>
-<% }) %>  
-<div>Date: <%= menu.date.longDate.toDateString() %></div>
-
-
-<a href="/menus/<%= menu.slug %>/edit">Edit</a>
-<%- include('../templates/deleteForm',
-    {url: `/menus/${menu.id}`})
-%>
+    </div>
+</div>
+<div class="page-links" id="foods-links">
+    <a class="link-page" href="/menus/new">Nou Menu</a>
+    <a class="link-page" href="/menus/advancedSearch">Cerca Avançada</a>
+</div>
 
 
 

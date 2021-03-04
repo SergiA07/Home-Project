@@ -1,15 +1,21 @@
-<div>
-    <label for="scheduledDate">Date</label>
-    <input type="date" name="scheduledDate"
+<div class="content-double-item-row">
+    <label class="label" for="scheduledDate">Date</label>
+    <input required class="input" type="date" name="scheduledDate"
         value="<%= menu.date.longDate == null ? '' : menu.date.longDate.toISOString().split('T')[0] %>" /> 
 </div>
-<div>
+<div class="content-multiple-item">
+    <% let lastIndex = 0 %>
     <% menu.meals.forEach((meal,index) => { %>
-        <div>
-            <% if (meal.onModel === 'Dish') { %>
-                <div><label>Dishes</label></div>
-                <label for="id<%=index%>">Dish <%=index + 1%>:</label>
-                <select name="dish<%=index%>">
+        <% if (meal.onModel === 'Dish') { %>
+            <%lastIndex += 1%>
+            <% if (index == 0) { %>
+                <div class="content-item">
+                    <h4>Dishes</h4>
+                </div>
+            <% } %>
+            <div class="content-multiple-item-element">
+                <label class="label" for="id<%=index%>">Dish <%=index + 1%>:</label>
+                <select class="select-small" name="dish<%=index%>">
                     <option disabled selected>-- Tria --</option>
                     <% dishes.forEach(dish => { %>
                         <% if (dish.id == meal.meal) { %>
@@ -19,12 +25,19 @@
                         <% } %>    
                     <% }) %>
                 </select>
-                <button type="submit" name="eraseButton<%=index%>">X</button>
+                <button class="xButton" type="submit" name="eraseButton<%=index%>">X</button>
+            </div>
+        <% } %>
+        <% if (meal.onModel === 'Food') { %>
+            <% index = index - lastIndex %>
+            <% if (index == 0) { %>
+                <div class="content-item">
+                    <h4>Foods</h4>
+                </div>
             <% } %>
-            <% if (meal.onModel === 'Food') { %>
-                <div><label>Foods</label></div>
-                <label for="id<%=index%>">Food <%=index + 1%>:</label>
-                <select name="food<%=index%>">
+            <div class="content-multiple-item-element">
+                <label class="label" for="id<%=index%>">Food <%=index + 1%>:</label>
+                <select class="select-small" name="food<%=index%>">
                     <option disabled selected>-- Tria --</option>
                     <% foods.forEach(food => { %>
                         <% if (food.id == meal.meal) { %>
@@ -34,15 +47,20 @@
                         <% } %>
                     <% }) %>
                 </select>
-                <input type="number" name="foodQuantity<%=index%>" value="<%= meal.quantity %>"  />
-                <button type="submit" name="eraseButton<%=index%>">X</button>
-            <% } %>
-        </div>
+                <label class="label" for="foodQuantity">Food <%=index + 1%> gr:</label>
+                <input class="input-small" type="number" name="foodQuantity<%=index%>" value="<%= meal.quantity %>"  />
+                <button class="xButton" type="submit" name="eraseButton<%=index%>">X</button>
+            </div>
+        <% } %>
     <% }) %>
-    <div>
-        <button type="submit" name="plusDishButton">+ Dish</button>
-        <button type="submit" name="plusFoodButton">+ Food</button>
-    </div>
+</div>
+<div class="content-links">
+    <button class="plusButton" type="submit" name="plusDishButton">+ Dish</button>
+    <button class="plusButton" type="submit" name="plusFoodButton">+ Food</button>
+</div>
+<div class="content-links">
+    <a class="link" href="/menus">Cancel</a>
+    <button class="button" type="submit" name="createButton">Confirm</button>
 </div>
 
 

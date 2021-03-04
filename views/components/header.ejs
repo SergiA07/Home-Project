@@ -1,5 +1,6 @@
+<% if(locals.loggedInUser != null) { %>
 <nav class="navbar">
-    <a href="/" class="navbar_logo">HOME</a>
+    <a href="/users/info" class="navbar_logo">HoMe</a>
     <a href="#" class="navbar_toggleButton">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -13,51 +14,38 @@
             <a class="navbar_links-item-name" href="/foods">Aliments</a>
             <div class="navbar_links-item-dropdown">
                     <div class="navbar_links-item-dropdown-arrow"></div>
-                    <a class="navbar_links-item-dropdown-item" href="#">Nou Aliment</a>
-                    <a class="navbar_links-item-dropdown-item" href="#">Búsqueda</a>
+                    <a class="navbar_links-item-dropdown-item" href="/foods/new">Nou Aliment</a>
+                    <a class="navbar_links-item-dropdown-item" href="/foods/advancedSearch">Cerca Av.</a>
             </div>
         </div>
-        
-
-
         <div class="navbar_links-item">
             <a class="navbar_links-item-name" href="/dishes">Plats</a>
             <div class="navbar_links-item-dropdown">
                 <div class="navbar_links-item-dropdown-arrow"></div>
-                <a class="navbar_links-item-dropdown-item" href="#">Link 3</a>
-                <a class="navbar_links-item-dropdown-item" href="#">Link 4</a>
+                <a class="navbar_links-item-dropdown-item" href="/dishes/new">Nou Plat</a>
+                <a class="navbar_links-item-dropdown-item" href="/dishes/advancedSearch">Cerca Av.</a>
             </div>
         </div>
         <div class="navbar_links-item">
             <a class="navbar_links-item-name" href="/menus">Menus</a>
             <div class="navbar_links-item-dropdown">
                 <div class="navbar_links-item-dropdown-arrow"></div>
-                <a class="navbar_links-item-dropdown-item" href="#">Link 5</a>
-                <a class="navbar_links-item-dropdown-item" href="#">Link 6</a>
+                <a class="navbar_links-item-dropdown-item" href="/menus/new">Nou Menu</a>
+                <a class="navbar_links-item-dropdown-item" href="/menus/advancedSearch">Cerca Av.</a>
             </div>
         </div>
-        <!-- <a class="navbar_links-item" href="/menus/new">Entrenus</a> -->
-        <% if(locals.loggedInUser != null) { %>
-            <div class="navbar_links-item" id="extra">
-                <a class="navbar_links-item-name" href="/dishes"><i class="fa fa-user"></i></a>
-            </div>
-            <div class="navbar_links-item" id="extra">
-                <a class="navbar_links-item-name" href="/auth/logout">
-                    <i class="fa fa-sign-out fa_custom"></i>
-                </a>
-            </div>
-        <% } else { %>
-            <div class="navbar_links-item" id="extra">
-                <a class="navbar_links-item-name" href="/auth/login"><i class="fa fa-sign-in fa_custom"></i></a>
-            </div>
-        <% } %>    
-        
-    
-
+        <div class="navbar_links-item" id="extra">
+            <a class="navbar_links-item-name" href="/users/show"><i class="fa fa-user"></i></a>
+        </div>
+        <div class="navbar_links-item" id="extra">
+            <a class="navbar_links-item-name" href="/auth/logout">
+                <i class="fa fa-sign-out fa_custom"></i>
+            </a>
+        </div>
     </div>
     <div class="navbar_user">
         <% if(locals.loggedInUser != null) { %>
-            <a class="navbar_user-username" href="/users/info"><i class="fa fa-user"></i></a> 
+            <a class="navbar_user-username" href="/users/show"><i class="fa fa-user"></i></a> 
             <a class="navbar_user-icon" href="/auth/logout">
                 <i class="fa fa-sign-out fa_custom"></i>
             </a>
@@ -67,6 +55,7 @@
         <% } %>
     </div>
 </nav>
+<% } %> 
 
 
 

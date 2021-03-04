@@ -5,14 +5,23 @@ const registerValidation = data => {
         username: Joi.string()
             .min(3)
             .max(30)
-            .required(),
+            .required()
+            .messages({
+                'string.min': 'Username length must be at least 3 characters long'
+            }),
         email: Joi.string()
             .min(6)
             .required()
-            .email(),
+            .email()
+            .messages({
+                'string.email': 'Email must be a valid email'
+            }),
         password: Joi.string()
             .min(6)
             .required()
+            .messages({
+                'string.min': 'Password length must be at least 6 characters long'
+            })
     })
     return schema.validate(data)
 }

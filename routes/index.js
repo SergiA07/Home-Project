@@ -4,7 +4,7 @@ const User = require('../models/user')
 const verify = require('../public/javascripts/verifyToken')
 
 router.get('/', verify, (req, res) => {
-    res.redirect('users/info')
+    redirect('/users')
 })
 
 module.exports = router;

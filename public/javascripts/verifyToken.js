@@ -6,6 +6,7 @@ module.exports = function(req, res, next) {
     try {
         const verified = jwt.verify(cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
         req.user = verified
+        res.locals.loggedInUser = true;
         next()
     } catch (error) {
         if(error.name === 'TokenExpiredError') {

@@ -17,10 +17,10 @@ const dishSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  updateDate: {
+  /* updateDate: {
     type: Date,
     required: true
-  },
+  }, */
   ingredients: [ingredientSchema],
   slug: {
     type: String,

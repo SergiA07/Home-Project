@@ -1,0 +1,24 @@
+.input {
+    appearance: none;
+    outline: none;
+    font-size: 1.5rem;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    margin: auto 0;
+    height: 25px;
+    background: linear-gradient(90deg, #eee, #ccc);
+    &:focus,
+    &:valid {
+        background: linear-gradient(90deg, #fff, #eee);
+    }
+}
+
+.input-small {
+    @extend .input;
+    width: 100%;
+    height: 1.75rem;
+    margin: auto 0;
+    line-height: 1.4rem;
+    font-size: $tiny;
+}

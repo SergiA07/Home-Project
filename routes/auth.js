@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../models/user');
 const {registerValidation, loginValidation} = require('../public/javascripts/validation') 
 const jwt = require('jsonwebtoken');
-const { localsName } = require('ejs');
+
 
 router.get('/register', async (req, res) => {
     res.render('register')
@@ -58,8 +58,7 @@ router.post('/login', async (req, res) => {
                 { expiresIn: "3000s" },
                 (error, accesstoken) => {
                     if (error) console.log(error)
-                    res.cookie('accessToken', accesstoken, {httpOnly: true}).redirect('/users/info')
-                    //res.json({accesstoken})
+                    res.cookie('accessToken', accesstoken, {httpOnly: true}).redirect(`/users/${user.slug}`)
                 })
         } else {
             return res.render('login', {userLoginError: 'Password incorrect'})

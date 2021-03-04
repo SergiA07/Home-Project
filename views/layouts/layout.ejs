@@ -5,20 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Home</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/css/style.css">
   <script defer src="/javascripts/script.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    
     <main>
-        <%- include('../templates/header.ejs') %>
-        <div class="main-container">
-            <%- include('../templates/errorMessage.ejs') %>
-            <%- body %>
-        </div>
-        <%- include('../templates/footer.ejs') %>
+        
+        <%- include('../components/header.ejs') %>
+            <div class="main-container">
+                
+                <%- include('../components/errorMessage.ejs') %>
+                <%- body %>
+                
+            </div>
+            <%- include('../components/footer.ejs') %>
+        
     </main>
 </body>
 </html>
