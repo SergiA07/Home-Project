@@ -4,7 +4,6 @@ const User = require('../models/user');
 const {registerValidation, loginValidation} = require('../public/javascripts/validation') 
 const jwt = require('jsonwebtoken');
 
-
 router.get('/register', async (req, res) => {
     res.render('register')
 })

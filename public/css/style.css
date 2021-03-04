@@ -47,13 +47,13 @@ main {
 }
 
 h1 {
-  font-size: clamp(4.5rem, 5vw, 6rem);
+  font-size: clamp(4.75rem, 5vw, 6rem);
   color: #222;
 }
 
 h2 {
   color: #000;
-  font-size: clamp(2.5rem, 3vw, 4rem);
+  font-size: clamp(3rem, 3vw, 4rem);
 }
 
 h3 {
@@ -110,7 +110,7 @@ p, li, a, button {
   cursor: pointer;
   width: 230px;
   margin: auto 0;
-  font-size: clamp(2.5rem, 3vw, 4rem);
+  font-size: clamp(3rem, 3vw, 4rem);
   color: #222;
   font-weight: bold;
   margin-left: 2rem;
@@ -178,7 +178,7 @@ p, li, a, button {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    background: radial-gradient(#333, #111);
+    background: radial-gradient(#717f7f, rgba(255, 255, 240, 0.2));
   }
 }
 
@@ -207,7 +207,7 @@ p, li, a, button {
   }
   .navbar_links-item:hover {
     width: 100%;
-    background: #333;
+    background: #222;
   }
 }
 
@@ -249,7 +249,7 @@ p, li, a, button {
   text-align: center;
   padding: 1rem 1rem;
   width: 15rem;
-  background: #cccccc;
+  background: #cdebf7;
   border-radius: 6px;
   display: none;
   -webkit-box-orient: vertical;
@@ -275,7 +275,7 @@ p, li, a, button {
 .navbar_links-item-dropdown-item:hover {
   border-radius: 6px;
   width: 100%;
-  background: rgba(205, 235, 247, 0.4);
+  background: rgba(128, 128, 128, 0.25);
 }
 
 .navbar_links-item-dropdown-arrow {
@@ -284,7 +284,7 @@ p, li, a, button {
   height: 11px;
   top: -3px;
   left: 15px;
-  background: #cccccc;
+  background: #cdebf7;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
@@ -330,7 +330,7 @@ p, li, a, button {
 
 @media screen and (max-width: 768px) {
   .navbar_links-item:nth-child(5), .navbar_links-item:nth-child(6) {
-    background: #333;
+    background: #222;
     color: #cdebf7;
   }
 }
@@ -433,15 +433,9 @@ p, li, a, button {
       flex-shrink: 0;
   width: 100vw;
   height: auto;
-  background: #111;
+  background: #222;
   color: #cdebf7;
   padding-top: 1vh;
-  /*
-    @include tablet {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    */
 }
 
 .footer_content {
@@ -587,7 +581,7 @@ p, li, a, button {
   line-height: 1.4rem;
   font-size: 1.25rem;
   font-weight: bold;
-  color: lightslategray;
+  color: #555;
   text-align: left;
 }
 
@@ -648,7 +642,7 @@ p, li, a, button {
 
 .link-page {
   height: 100%;
-  background: rgba(205, 202, 199, 0.5);
+  background: rgba(204, 204, 204, 0.5);
   -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.09);
           box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.09);
   text-align: center;
@@ -689,7 +683,7 @@ p, li, a, button {
   color: #555;
   font-size: 1.5rem;
   text-align-last: center;
-  background-color: #cdcac7;
+  background-color: rgba(128, 128, 128, 0.25);
   border: none;
   border-radius: 3px;
   -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.02);
@@ -704,7 +698,7 @@ p, li, a, button {
 }
 
 .select:hover, .select-small:hover {
-  background-color: #bab8b7;
+  background-color: rgba(128, 128, 128, 0.4);
   -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
           box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.03);
 }
@@ -746,8 +740,8 @@ p, li, a, button {
   border-radius: 0;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  background: -webkit-gradient(linear, left top, right top, from(#000), to(#333)) center bottom/0 2px no-repeat, -webkit-gradient(linear, left top, right top, from(#ccc), to(#ccc)) left bottom/100% 2px no-repeat, -webkit-gradient(linear, left top, right top, from(#eee), to(#fff)) left bottom/100% no-repeat;
-  background: linear-gradient(90deg, #000, #333) center bottom/0 2px no-repeat, linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat, linear-gradient(90deg, #eee, #fff) left bottom/100% no-repeat;
+  background: -webkit-gradient(linear, left top, right top, from(#000), to(#222)) center bottom/0 2px no-repeat, -webkit-gradient(linear, left top, right top, from(#ccc), to(#ccc)) left bottom/100% 2px no-repeat, -webkit-gradient(linear, left top, right top, from(#eee), to(#fff)) left bottom/100% no-repeat;
+  background: linear-gradient(90deg, #000, #222) center bottom/0 2px no-repeat, linear-gradient(90deg, #ccc, #ccc) left bottom/100% 2px no-repeat, linear-gradient(90deg, #eee, #fff) left bottom/100% no-repeat;
 }
 
 .authForm-field .auth-input:focus, .authForm-field .auth-input:valid {
@@ -842,7 +836,7 @@ p, li, a, button {
 }
 
 .content-multiple-item-element {
-  background: rgba(204, 204, 204, 0.459);
+  background: rgba(204, 204, 204, 0.5);
   margin: 1rem 0;
   display: -ms-grid;
   display: grid;
@@ -971,7 +965,7 @@ p, li, a, button {
 
 .auth-container .auth-content h2 {
   color: #cdebf7;
-  font-size: clamp(2.5rem, 3vw, 4rem);
+  font-size: clamp(3rem, 3vw, 4rem);
 }
 
 .auth-container .auth-content-error-message {
@@ -1002,7 +996,7 @@ p, li, a, button {
   border-radius: 6px;
   padding: .35rem;
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: clamp(1, 5rem 1.75vw, 2.25rem);
   color: #aaa;
   -webkit-transition: color 0.3s ease, border-color 0.3s ease;
   transition: color 0.3s ease, border-color 0.3s ease;

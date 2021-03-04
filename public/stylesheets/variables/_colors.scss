@@ -1,33 +1,40 @@
+$white-broken: #d8d8d8;
+$white-broken2: rgb(235, 231, 231);
+
+$gray-light:#aaa;
+$gray-medium: rgba(204, 204, 204, 0.5);
+$gray-dark: #555;
+
+$gray2-light: rgba(128, 128, 128, 0.25);
+$gray2-dark: rgba(128, 128, 128, 0.4);
+
 $turquoise-light:rgba(205, 235, 247, 1);
 $turquoise-medium:rgba(205, 235, 247, 0.65);
 $turquoise-dark:rgba(205, 235, 247, 0.4);
 
-$black-light: #333;
+$aqua: aqua;
+
+$red: rgb(241, 88, 61);
+$redError: red;
+$red-dark: darkred;
+
+$black-light: #222;
 $black-dark: #000;
 
-$gray-light:#aaa;
-
-//Background
 $backgroundColor1: hsl(180, 6%, 47%);
 $backgroundColor2: rgba(255,255,240, 0.2);
-
 $backgroundColorGradient: radial-gradient($backgroundColor2,$backgroundColor1);
-$backgroundColorGradient2: radial-gradient($backgroundColor1,$backgroundColor2);
-
-$backgroundColorGradient3: radial-gradient(#333,#111);
-
-//Text
-$primaryBtnColor: rgb(116, 113, 113);
-$secundaryBtnColor: rgb(65, 76, 128);
-
-//$primaryTextColor: rgb(6, 26, 4);
-$primaryTextColor: #000;
-$secundaryTextColor: rgb(63, 11, 22);
-$redError: red;
-
-//buttons
+$backgroundColorGradient2: radial-gradient(#333,#111);
+$backgroundColorGradient3: radial-gradient($backgroundColor1,$backgroundColor2);
 
 $buttonColor1-light: rgba(205, 202, 199, 0.5);
 $buttonColor1-dark: rgb(205, 202, 199);
-
 $buttonColor2: rgb(186, 184, 183);
+
+
+
+
+
+
+
+

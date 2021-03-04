@@ -26,13 +26,13 @@
     line-height: 1.4rem;
     font-size: $micro;
     font-weight: bold;
-    color:lightslategray;
+    color: $gray-dark;
     text-align: left;
     &:focus {
         outline: none;
     }
     &:hover {
-        color: darkred;
+        color: $red-dark
     }
 }
 
