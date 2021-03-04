@@ -527,7 +527,7 @@ p, li, a, button {
 
 .input, .input-small {
   min-width: 1px;
-  max-width: 80%;
+  max-width: 60%;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
