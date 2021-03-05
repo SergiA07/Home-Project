@@ -11,17 +11,27 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        @include tablet {
+            flex-direction: row;
+        }
         &-logo {
             cursor: pointer;
             color: $turquoise-light;
             font-size: $large;
             font-weight: 400;
             line-height: 3rem;
+            @include tablet {
+                font-size: $big;
+                //align-self: flex-end;
+            }
         }
 
         &-text {
             color: $turquoise-light;
             font-size: $smaller;
+            @include tablet {
+                display: none;
+            }
         }
     
         &-socials {
