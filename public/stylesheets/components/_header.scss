@@ -58,7 +58,7 @@
             right: 0;
             width: 60vw;
             height: 100vh;
-            display: flex;
+            display: none;
             flex-direction: column;
             background: $backgroundColorGradient2;
         }
@@ -169,12 +169,16 @@
     }
     &_links.active {
         transition:
+            display 1s ease-in,
             max-width 1s ease-in,
             visibility 0.5s ease-in,
             opacity 0.5s ease-in;
         max-width: 3000px;
         visibility: visible;
         opacity: 1;
+        @include tablet {
+            display: flex;
+        }
     }
     &_user {
         margin-right: 2rem;
