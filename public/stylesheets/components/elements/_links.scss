@@ -27,13 +27,17 @@
     height: 100%;
     background: $gray-medium;
     box-shadow: 0 1px 0 1px rgba(0,0,0,.09);
+    border-radius: 3px;
     text-align: center;
     line-height: 25px;
-    padding: 0.5rem 0rem;
+    padding: 0.5rem 2rem;
     font-size: $tiny;
     font-weight: 500;
     text-transform: uppercase;
     &:hover {
         font-weight: 600;
+    }
+    @include tablet {
+        margin-bottom: 0rem;
     }
 }
