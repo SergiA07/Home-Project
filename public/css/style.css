@@ -171,9 +171,7 @@ p, li, a, button {
     right: 0;
     width: 60vw;
     height: 100vh;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+    display: none;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -336,11 +334,19 @@ p, li, a, button {
 }
 
 .navbar_links.active {
-  -webkit-transition: max-width 1s ease-in, visibility 0.5s ease-in, opacity 0.5s ease-in;
-  transition: max-width 1s ease-in, visibility 0.5s ease-in, opacity 0.5s ease-in;
+  -webkit-transition: display 1s ease-in, max-width 1s ease-in, visibility 0.5s ease-in, opacity 0.5s ease-in;
+  transition: display 1s ease-in, max-width 1s ease-in, visibility 0.5s ease-in, opacity 0.5s ease-in;
   max-width: 3000px;
   visibility: visible;
   opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar_links.active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 .navbar_user {
