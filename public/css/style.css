@@ -645,9 +645,10 @@ p, li, a, button {
   background: rgba(204, 204, 204, 0.5);
   -webkit-box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.09);
           box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.09);
+  border-radius: 3px;
   text-align: center;
   line-height: 25px;
-  padding: 0.5rem 0rem;
+  padding: 0.5rem 2rem;
   font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -655,6 +656,12 @@ p, li, a, button {
 
 .link-page:hover {
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .link-page {
+    margin-bottom: 0rem;
+  }
 }
 
 .textarea {
@@ -913,7 +920,12 @@ p, li, a, button {
   padding-bottom: 4rem;
 }
 
-.new-container .subtitle {
+.index-container .title, .new-container .title, .show-container .title {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.index-container .subtitle, .new-container .subtitle, .show-container .subtitle {
   text-align: center;
   text-transform: capitalize;
 }
