@@ -1,51 +1,49 @@
 const express = require('express');
 const router = express.Router();
-const Food = require('../models/food');
-const Dish = require('../models/dish');
-const verify = require('../public/javascripts/verifyToken')
-
+const verify = require('../public/javascripts/verifyToken');
+const FoodService = require("../services/FoodService");
 
 router.get('/', verify, async (req, res) => {
     try {
-        const foods = await Food.find();
+        const foods = await new FoodService().getFood()
         res.render('foods/index', {
             foods: foods
         })
-    } catch {
+    } catch  {
         res.redirect('/');
     }
 });
 
 router.get('/new', verify, (req, res) => {
-    renderNewPage(res, new Food())
-})
-
-router.post('/new',  verify, async (req,res) => {
-    const food = new Food({
-        name: req.body.name,
-        fats: req.body.fats,
-        carbs: req.body.carbs,
-        protein: req.body.protein,
-        fiber: req.body.fiber
-    })
     try {
-        const newFood = await food.save()
-        res.redirect(`/foods/${newFood.slug}`)
+    food = new FoodService().emptyFood()
+    res.render('foods/new', {food: food})
     } catch {
-        renderNewPage(res, food, true)
+        res.redirect('/');
     }
 })
 
-router.get('/search/',  verify, async (req, res) => {
+router.post('/new',  verify, async (req,res) => {
+    const {name, fats, carbs, protein, fiber} = req.body
     try {
-        const food = await Food.findById(req.query.id)
+        const newFood = await new FoodService().createFood(name, fats, carbs, protein, fiber)
+        res.redirect(`/foods/${newFood.slug}`)
+    } catch {
+        res.redirect('/');
+    }
+})
+
+router.get('/search/', verify, async (req, res) => {
+    try {
+        const food = await new FoodService().getFood({_id: req.query.id})
         res.redirect(`/foods/${food.slug}`)
     } catch {
         res.redirect('/')
     }
 })
 
-router.get('/advancedSearch',  verify, async (req, res) => {
+/*
+router.get('/advancedSearch',  verify, async (req, res) => {  //TO DO
     let query = Food.find()
     let searchStarted = true
     if (req.query.name != null && req.query.name != '') {
@@ -73,87 +71,45 @@ router.get('/advancedSearch',  verify, async (req, res) => {
       res.redirect('/')
     }
 })
+*/
 
 router.get('/:slug', verify, async (req, res) => {
-    renderShowPage(req.params.slug, res)
+    try {
+        const foodService = new FoodService()
+        const foods = await foodService.getFood()
+        const food = await foodService.getFood({slug: req.params.slug})
+        res.render('foods/show', {food:food, foods:foods})
+    } catch {
+        res.redirect('/')
+    } 
 })
 
-router.get('/:slug/edit', async (req, res) => {
+router.get('/:slug/edit', verify, async (req, res) => {
     try {
-        const food = await Food.findOne({ slug: req.params.slug })
-        renderEditPage(res, food)
+        const food = await new FoodService().getFood({slug: req.params.slug})
+        res.render('foods/edit', {food: food})
     } catch {
         res.redirect('/')
     }
 })
 
 router.put('/:id', verify, async (req, res) => {
-    let food
     try {
-        food = await Food.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        const food = await new FoodService().updateFood(req.params.id, req.body)
         res.redirect(`/foods/${food.slug}`)
     } catch {
-        if (food != null) {
-            renderEditPage(res, food, true)
-        } else {
-            res.redirect('/')
-        }
+        res.redirect('/')
     }
+    
 })
 
 router.delete('/:id', verify, async (req, res) => {
-    let food
     try {
-        food = await Food.findById(req.params.id)
-        await food.remove()
+        await new FoodService().deleteFood(req.params.id)
         res.redirect('/foods')
-    } catch (e) {
-        renderShowPage(food.slug, res, e.message)
+    } catch {
+        res.redirect('/')
     }
 })
-
-////// RENDER FUNCTIONS
-
-async function renderNewPage(res, food, hasError = false) {
-    renderFormPage(res, food, 'new', hasError)
-}
-
-async function renderEditPage(res, food, hasError = false) {
-    renderFormPage(res, food, 'edit', hasError)
-}
-
-async function renderFormPage(res, food, form, hasError = false) {
-    try {
-        const params = {
-        food: food
-        }
-        if (hasError) {
-            if (form === 'edit') {
-                params.errorMessage = 'Error Updating Food'
-            } else {
-                params.errorMessage = 'Error Creating Food'
-            }
-        } 
-        res.render(`foods/${form}`, params)
-    } catch {
-        res.redirect('/')
-    }
-}
-
-async function renderShowPage(slug, res, errorDeleting = undefined) {
-    try {
-        const foods = await Food.find()
-        const food = await Food.findOne({ slug: slug })
-        params = {
-            food: food,
-            foods: foods
-        }  
-        if (errorDeleting != undefined) { 
-            params.errorMessage = 'Error Deleting Food: '+ errorDeleting } 
-        res.render('foods/show', params)
-    } catch {
-        res.redirect('/')
-    }
-}
 
 module.exports = router;
