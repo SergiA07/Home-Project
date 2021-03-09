@@ -27,7 +27,7 @@ app.use(expressLayouts);
 app.use(express.static(__dirname + '/public'));
 app.use(express.json())
 app.use(cors())
-app.use(allowCrossDomain);
+//app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded( {limit: '10mb', extended: false}));
 app.use(methodOverride('_method'))
 app.use(cookieParser())
@@ -48,11 +48,13 @@ db1.once('open', () => console.log('Connected to Mongoose'));
 
 ////
 
+
 function allowCrossDomain(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,POST');
     res.header('Access-Control-Expose-Headers', 'authToken')
     next(); 
 }
+
 
 app.listen(process.env.PORT || 4000);

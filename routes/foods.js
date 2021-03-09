@@ -72,6 +72,16 @@ router.get('/advancedSearch',  verify, async (req, res) => {  //TO DO
     }
 })
 */
+router.get('/api/:slug', verify, async(req, res) => {
+    try {
+        const foodService = new FoodService()
+        const data = await foodService.getFood({slug: req.params.slug})
+        res.json(data)
+    } catch {
+        //res.redirect('/')
+    } 
+})
+
 
 router.get('/:slug', verify, async (req, res) => {
     try {
