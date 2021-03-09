@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home</title>
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <script defer src="/javascripts/script.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <main>
-        
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Home</title>
+        <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script defer src="/javascripts/script.js"></script>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <main>
         <%- include('../components/header.ejs') %>
             <div class="main-container">
-                
                 <%- include('../components/errorMessage.ejs') %>
                 <%- body %>
                 
             </div>
+            <script type="module" src="/javascripts/chartScript.js"></script>
             <%- include('../components/footer.ejs') %>
-        
-    </main>
-</body>
+        </main>
+    </body>
 </html>
 
 

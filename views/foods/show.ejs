@@ -1,6 +1,9 @@
 <div class="show-container">
     <h1 class="title">Aliments</h1>
     <h3 class="subtitle"><%= food.name %></h3>
+    <div class="content-item">
+        <canvas class="chart" id="myChart" width="200"  height="200"></canvas>
+    </div>
     <div class="content">
         <div class="content-double-item-row">
             <label class="label" id="label-show" for="name">Fats:</label>
@@ -35,6 +38,7 @@
                     </select>
             </form>
         </div>
+        
     </div>
 </div>
 <div class="page-links" id="foods-links">
