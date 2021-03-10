@@ -8,7 +8,6 @@ xButton.addEventListener('click', () => navbarLinks.classList.toggle('active'))
 
 ////////
 const address = window.location.pathname.split('/')
-console.log(address[address.length-1])
 if(address[address.length-1] == 'info') {
     console.log('dins')
     const infoButton = document.getElementsByClassName("info-Button")[0];

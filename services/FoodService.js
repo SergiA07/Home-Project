@@ -26,7 +26,8 @@ class FoodService {
     }
 
     async deleteFood(id) {
-        await Food.findByIdAndRemove(id)
+        const result = await Food.findByIdAndRemove(id)
+        return result
     }
 
     emptyFood() {

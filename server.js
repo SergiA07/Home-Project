@@ -9,7 +9,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser')
-
+const createError = require('http-errors')
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -39,6 +39,20 @@ app.use('/users', userRouter);
 app.use('/foods', foodRouter);
 app.use('/dishes', dishRouter);
 app.use('/menus', menuRouter);
+
+app.use((req, res, next) => {
+    next(createError(404, 'Not Found'))
+})
+
+app.use((err, req, res, next) => {
+    res.status(err.status || 500)
+    error = {
+            status: err.status || 500,
+            messageMsg: err.message
+    }
+   res.render('error',{status:error.status, errorMsg: error.messageMsg})
+})
+
 
 /////MongoDB
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false });
